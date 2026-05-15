@@ -2,405 +2,480 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#3D2B1F">
 <title>Maison Dorée — Pâtisserie Artisanale</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--cream:#FAF7F2;--gold:#C8A96E;--gold-dark:#9A7A45;--brown:#3D2B1F;--brown-light:#6B4C38;--text:#2C1F15;--text-muted:#8A7060;--white:#FFFFFF;--border:rgba(200,169,110,0.25)}
-html{scroll-behavior:smooth}
-body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.4rem 4rem;background:rgba(250,247,242,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:all 0.3s ease}
-.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--brown);letter-spacing:0.08em;text-decoration:none}
+:root{--cream:#FAF7F2;--gold:#C8A96E;--gold-dark:#9A7A45;--brown:#3D2B1F;--brown-light:#6B4C38;--text:#2C1F15;--text-muted:#8A7060;--white:#FFFFFF;--border:rgba(200,169,110,0.25);--touch:48px}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;padding-bottom:70px}
+a{text-decoration:none;color:inherit}
+
+/* TOP NAV */
+.topnav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:0 1.2rem;height:56px;background:rgba(250,247,242,0.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--brown);letter-spacing:0.06em}
 .nav-logo em{color:var(--gold);font-style:italic}
-.nav-links{display:flex;gap:2.5rem;list-style:none}
-.nav-links a{font-size:0.78rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.2s}
-.nav-links a:hover{color:var(--gold)}
-.nav-cart{display:flex;align-items:center;gap:1.5rem}
-.btn-nav{padding:0.55rem 1.4rem;border:1px solid var(--gold);color:var(--gold);background:transparent;font-family:'Jost',sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:all 0.25s ease}
-.btn-nav:hover{background:var(--gold);color:white}
-.cart-icon{position:relative;cursor:pointer;font-size:1rem;color:var(--text-muted);background:none;border:1px solid var(--border);padding:0.4rem 0.8rem;font-family:'Jost',sans-serif;letter-spacing:0.1em;transition:color 0.2s}
-.cart-icon:hover{color:var(--gold)}
-.cart-count{margin-left:0.4rem;background:var(--gold);color:white;border-radius:50%;font-size:0.6rem;font-weight:600;display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;vertical-align:middle}
+.nav-actions{display:flex;align-items:center;gap:0.2rem}
+.nav-icon-btn{width:var(--touch);height:var(--touch);display:flex;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;color:var(--brown);position:relative;-webkit-tap-highlight-color:transparent}
+.nav-icon-btn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.cart-badge{position:absolute;top:8px;right:4px;width:16px;height:16px;background:var(--gold);color:white;border-radius:50%;font-size:0.58rem;font-weight:600;display:flex;align-items:center;justify-content:center}
+.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;width:var(--touch);height:var(--touch);align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--brown);transition:all 0.3s;transform-origin:center}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px)}
+
+/* DRAWER */
+.drawer{position:fixed;top:56px;left:0;right:0;bottom:0;z-index:190;background:var(--brown);transform:translateX(-100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:2rem 1.5rem}
+.drawer.open{transform:translateX(0)}
+.drawer-links{list-style:none;margin-top:1rem}
+.drawer-links li{border-bottom:1px solid rgba(255,255,255,0.08)}
+.drawer-links a{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 0;font-size:1.1rem;letter-spacing:0.06em;color:rgba(255,255,255,0.85);font-family:'Cormorant Garamond',serif}
+.drawer-links a::after{content:'→';color:var(--gold);font-size:1rem}
+.drawer-cta{margin-top:auto;display:flex;flex-direction:column;gap:0.8rem}
+.drawer-cta a{padding:1rem;text-align:center;font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:500}
+.btn-outline{border:1px solid rgba(200,169,110,0.5);color:var(--gold)}
+.btn-filled{background:var(--gold);color:white}
+
+/* DESKTOP NAV LINKS */
+.nav-desktop-links{display:none;list-style:none;gap:2rem;align-items:center}
+.nav-desktop-links a{font-size:0.75rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted);transition:color 0.2s}
+.nav-desktop-links a:hover{color:var(--gold)}
+.nav-desktop-links .btn-account{padding:0.5rem 1.2rem;border:1px solid var(--gold);color:var(--gold);background:transparent;font-family:'Jost',sans-serif;font-size:0.7rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;transition:all 0.25s}
+.nav-desktop-links .btn-account:hover{background:var(--gold);color:white}
 
 /* HERO */
-.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:80px}
-.hero-left{display:flex;flex-direction:column;justify-content:center;padding:5rem 4rem 5rem 5rem}
-.hero-tag{font-size:0.72rem;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;display:flex;align-items:center;gap:1rem}
-.hero-tag::before{content:'';display:inline-block;width:40px;height:1px;background:var(--gold)}
-.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,6vw,5.5rem);font-weight:300;line-height:1.08;color:var(--brown);margin-bottom:1.8rem}
-.hero-title em{font-style:italic;color:var(--gold-dark)}
-.hero-sub{font-size:1rem;font-weight:300;color:var(--text-muted);line-height:1.8;max-width:400px;margin-bottom:3rem}
-.hero-ctas{display:flex;gap:1.2rem;align-items:center}
-.btn-primary{padding:1rem 2.4rem;background:var(--brown);color:white;font-family:'Jost',sans-serif;font-size:0.78rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;text-decoration:none;border:1px solid var(--brown);transition:all 0.3s ease;display:inline-block}
-.btn-primary:hover{background:var(--gold);border-color:var(--gold)}
-.btn-ghost{padding:1rem 2rem;color:var(--brown-light);font-family:'Jost',sans-serif;font-size:0.78rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:0.6rem;transition:gap 0.25s ease,color 0.25s}
-.btn-ghost::after{content:'→';font-size:1rem}
-.btn-ghost:hover{color:var(--gold);gap:1rem}
-.hero-right{position:relative;overflow:hidden;background:var(--brown);display:flex;align-items:center;justify-content:center}
-.hero-img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-.hero-badge{position:absolute;bottom:3rem;right:3rem;width:100px;height:100px;border-radius:50%;border:1px solid rgba(200,169,110,0.6);background:rgba(61,43,31,0.7);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
-.hero-badge span:first-child{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--gold);font-style:italic;line-height:1}
-.hero-badge span:last-child{font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(200,169,110,0.7);margin-top:0.2rem}
+.hero{position:relative;height:92vh;min-height:500px;margin-top:56px;overflow:hidden}
+.hero-img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0.1) 40%,rgba(61,43,31,0.78) 100%)}
+.hero-content{position:absolute;bottom:0;left:0;right:0;padding:2rem 1.5rem 2.5rem}
+.hero-tag{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.7rem}
+.hero-tag::before{content:'';display:inline-block;width:24px;height:1px;background:var(--gold)}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;line-height:1.05;color:white;margin-bottom:0.8rem}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:0.88rem;font-weight:300;line-height:1.7;color:rgba(255,255,255,0.75);margin-bottom:1.5rem;max-width:320px}
+.hero-ctas{display:flex;gap:0.8rem;flex-wrap:wrap}
+.btn-primary{flex:1;min-width:140px;padding:1rem 1.2rem;text-align:center;background:var(--gold);color:white;font-family:'Jost',sans-serif;font-size:0.75rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;border:1px solid var(--gold);-webkit-tap-highlight-color:transparent;transition:opacity 0.2s;cursor:pointer}
+.btn-primary:active{opacity:0.8}
+.btn-secondary{flex:1;min-width:120px;padding:1rem 1.2rem;text-align:center;background:transparent;color:white;font-family:'Jost',sans-serif;font-size:0.75rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.5);-webkit-tap-highlight-color:transparent}
+.btn-secondary:active{background:rgba(255,255,255,0.1)}
 
 /* STATS */
-.stats-bar{background:var(--brown);color:white;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,0.08)}
-.stat-item{padding:2rem;text-align:center;border-right:1px solid rgba(255,255,255,0.08)}
-.stat-item:last-child{border-right:none}
-.stat-number{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:var(--gold);display:block}
-.stat-label{font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-top:0.3rem}
+.stats-strip{background:var(--brown);display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid rgba(255,255,255,0.06)}
+.stat-item{padding:1.4rem 1rem;text-align:center;border-right:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08)}
+.stat-item:nth-child(2n){border-right:none}
+.stat-item:nth-child(3),.stat-item:nth-child(4){border-bottom:none}
+.stat-number{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--gold);display:block}
+.stat-label{font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:0.2rem}
 
 /* SECTIONS */
-section{padding:6rem 5rem}
-.section-tag{font-size:0.72rem;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:1rem}
-.section-tag::before{content:'';display:inline-block;width:30px;height:1px;background:var(--gold)}
-.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:300;color:var(--brown);line-height:1.2}
+.section-pad{padding:2.5rem 1.2rem}
+.section-tag{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;display:flex;align-items:center;gap:0.7rem}
+.section-tag::before{content:'';display:inline-block;width:20px;height:1px;background:var(--gold)}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;line-height:1.15;color:var(--brown)}
 .section-title em{font-style:italic;color:var(--gold-dark)}
+.link-all{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dark);display:flex;align-items:center;gap:0.3rem}
+.link-all::after{content:'→'}
 
 /* PRODUCTS */
-.products-section{background:var(--white)}
-.products-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:4rem}
-.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
-.product-card{cursor:pointer;transition:transform 0.3s ease}
-.product-card:hover{transform:translateY(-6px)}
-.product-img{aspect-ratio:3/4;background:var(--cream);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;position:relative;overflow:hidden}
-.product-img img{width:100%;height:100%;object-fit:cover;object-position:center}
-.product-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--cream);font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--text-muted);letter-spacing:0.1em;text-align:center;padding:1rem}
-.product-badge{position:absolute;top:1rem;left:1rem;padding:0.3rem 0.8rem;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:500;z-index:1}
-.badge-new{background:var(--brown);color:white}
+.products-section{background:var(--white);padding:2.5rem 0}
+.products-header{display:flex;justify-content:space-between;align-items:flex-end;padding:0 1.2rem;margin-bottom:1.5rem}
+.products-scroll{display:flex;gap:1rem;overflow-x:auto;overflow-y:visible;padding:0.5rem 1.2rem 1.2rem;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.products-scroll::-webkit-scrollbar{display:none}
+.product-card{flex:0 0 72vw;max-width:280px;scroll-snap-align:start;background:var(--cream);-webkit-tap-highlight-color:transparent}
+.product-img{width:100%;aspect-ratio:4/5;overflow:hidden;position:relative}
+.product-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease}
+.product-card:active .product-img img{transform:scale(1.03)}
+.product-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:0.9rem;color:var(--text-muted);text-align:center;padding:1rem}
+.product-badge{position:absolute;top:0.8rem;left:0.8rem;z-index:1;padding:0.25rem 0.6rem;font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:500}
 .badge-top{background:var(--gold);color:white}
-.product-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--brown);margin-bottom:0.3rem}
-.product-desc{font-size:0.82rem;color:var(--text-muted);margin-bottom:0.8rem;line-height:1.6}
-.product-footer{display:flex;justify-content:space-between;align-items:center}
-.product-price{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:var(--brown)}
-.product-price small{font-size:0.75rem;font-family:'Jost',sans-serif;color:var(--text-muted)}
-.btn-add{width:38px;height:38px;border:1px solid var(--gold);color:var(--gold);background:transparent;cursor:pointer;font-size:1.3rem;display:flex;align-items:center;justify-content:center;transition:all 0.25s}
-.btn-add:hover{background:var(--gold);color:white}
-.allergen-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.4rem}
-.allergen-tag{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.5rem;background:rgba(200,169,110,0.12);color:var(--gold-dark);border:1px solid rgba(200,169,110,0.3)}
+.badge-new{background:var(--brown);color:white}
+.product-info{padding:1rem}
+.product-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--brown);margin-bottom:0.3rem}
+.product-desc{font-size:0.78rem;color:var(--text-muted);line-height:1.5;margin-bottom:0.7rem}
+.allergen-tags{display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:0.8rem}
+.allergen-tag{font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.15rem 0.45rem;background:rgba(200,169,110,0.1);color:var(--gold-dark);border:1px solid rgba(200,169,110,0.25)}
+.product-footer{display:flex;justify-content:space-between;align-items:center;padding-top:0.8rem;border-top:1px solid var(--border)}
+.product-price{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;color:var(--brown)}
+.product-price small{font-size:0.7rem;font-family:'Jost',sans-serif;color:var(--text-muted)}
+.btn-add{width:44px;height:44px;border:1px solid var(--gold);color:var(--gold);background:transparent;cursor:pointer;font-size:1.4rem;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;transition:all 0.2s}
+.btn-add:active{background:var(--gold);color:white}
+.scroll-dots{display:flex;justify-content:center;gap:6px;padding:0.5rem 0 0}
+.scroll-dot{width:6px;height:6px;border-radius:50%;background:var(--border);transition:background 0.2s}
+.scroll-dot.active{background:var(--gold)}
 
 /* ABOUT */
-.about-strip{background:var(--cream);display:grid;grid-template-columns:1fr 1fr;gap:0;padding:0}
-.about-img-side{min-height:500px;overflow:hidden}
-.about-img-side img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-.about-text-side{padding:5rem;display:flex;flex-direction:column;justify-content:center}
-.about-text-side p{font-size:1rem;font-weight:300;color:var(--text-muted);line-height:1.9;margin:1.5rem 0 2.5rem;max-width:440px}
+.about-strip{background:var(--cream)}
+.about-img{width:100%;aspect-ratio:4/3;overflow:hidden}
+.about-img img{width:100%;height:100%;object-fit:cover;display:block}
+.about-text{padding:2rem 1.2rem 2.5rem}
+.about-text p{font-size:0.9rem;font-weight:300;color:var(--text-muted);line-height:1.85;margin:1rem 0 1.5rem}
+.btn-text-link{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--brown);font-weight:500;padding:0.9rem 1.8rem;border:1px solid var(--brown);-webkit-tap-highlight-color:transparent}
+.btn-text-link:active{background:var(--brown);color:white}
 
 /* BENEFITS */
 .benefits-section{background:var(--white)}
-.benefits-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2.5rem;margin-top:4rem}
-.benefit-item{text-align:center}
-.benefit-icon{width:56px;height:56px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem}
-.benefit-icon svg{width:24px;height:24px;stroke:var(--gold);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.benefit-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;color:var(--brown);margin-bottom:0.5rem}
-.benefit-text{font-size:0.82rem;color:var(--text-muted);line-height:1.7}
+.benefits-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.8rem}
+.benefit-item{background:var(--cream);padding:1.4rem 1rem;text-align:center;border:1px solid var(--border)}
+.benefit-icon{width:44px;height:44px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 0.8rem}
+.benefit-icon svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.benefit-title{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--brown);margin-bottom:0.4rem}
+.benefit-text{font-size:0.75rem;color:var(--text-muted);line-height:1.6}
 
 /* TESTIMONIALS */
-.testimonials-section{background:var(--brown);padding:5rem}
-.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem}
-.test-card{background:rgba(255,255,255,0.04);border:1px solid rgba(200,169,110,0.2);padding:2rem}
-.stars{color:var(--gold);font-size:0.85rem;letter-spacing:0.1em;margin-bottom:1rem}
-.test-text{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:1.5rem}
-.test-author{font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold)}
-.test-location{font-size:0.7rem;color:rgba(255,255,255,0.35);margin-top:0.2rem}
-.test-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3.5rem}
+.testimonials-section{background:var(--brown);padding:2.5rem 0}
+.test-header{padding:0 1.2rem;margin-bottom:1.5rem}
+.test-scroll{display:flex;gap:1rem;overflow-x:auto;padding:0.3rem 1.2rem 1rem;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.test-scroll::-webkit-scrollbar{display:none}
+.test-card{flex:0 0 85vw;max-width:340px;scroll-snap-align:start;background:rgba(255,255,255,0.05);border:1px solid rgba(200,169,110,0.2);padding:1.5rem}
+.stars{color:var(--gold);font-size:0.9rem;letter-spacing:0.05em;margin-bottom:0.8rem}
+.test-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:1.2rem}
+.test-author{font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold)}
+.test-location{font-size:0.65rem;color:rgba(255,255,255,0.3);margin-top:0.2rem}
 
-/* CTA */
-.cta-section{background:var(--gold);padding:5rem;text-align:center}
-.cta-section .section-title{color:white;margin:0.5rem 0 1rem}
-.cta-section p{font-size:1rem;color:rgba(255,255,255,0.85);margin-bottom:2.5rem}
-.cta-form{display:flex;gap:0;max-width:440px;margin:0 auto}
-.cta-form input{flex:1;padding:1rem 1.4rem;border:none;background:white;font-family:'Jost',sans-serif;font-size:0.88rem;outline:none;color:var(--text)}
+/* NEWSLETTER */
+.cta-section{background:var(--gold);padding:2.5rem 1.2rem;text-align:center}
+.cta-section .section-title{color:white;margin:0.5rem 0 0.8rem}
+.cta-section>p{font-size:0.85rem;color:rgba(255,255,255,0.85);margin-bottom:1.5rem;line-height:1.6}
+.cta-form{display:flex;flex-direction:column;gap:0.6rem}
+.cta-form input{width:100%;padding:1rem 1.2rem;border:none;background:white;font-family:'Jost',sans-serif;font-size:1rem;outline:none;color:var(--text);-webkit-appearance:none}
 .cta-form input::placeholder{color:var(--text-muted)}
-.cta-form button{padding:1rem 1.8rem;background:var(--brown);color:white;border:none;font-family:'Jost',sans-serif;font-size:0.78rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:background 0.25s}
-.cta-form button:hover{background:#5a3a25}
+.cta-form button{width:100%;padding:1rem;background:var(--brown);color:white;border:none;font-family:'Jost',sans-serif;font-size:0.78rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cta-form button:active{opacity:0.85}
 
 /* FOOTER */
-footer{background:var(--brown);color:rgba(255,255,255,0.55);padding:4rem 5rem 2rem}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
-.footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold);margin-bottom:1rem}
+footer{background:var(--brown);padding:2.5rem 1.2rem 1.5rem}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold);margin-bottom:0.5rem}
 .footer-brand em{font-style:italic}
-.footer-desc{font-size:0.82rem;line-height:1.8;max-width:240px;color:rgba(255,255,255,0.45)}
-.footer-col h4{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;font-weight:500}
-.footer-col ul{list-style:none}
-.footer-col li{margin-bottom:0.6rem;font-size:0.82rem;color:rgba(255,255,255,0.45)}
-.footer-col a{color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.2s}
-.footer-col a:hover{color:var(--gold)}
-.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:1.5rem;display:flex;justify-content:space-between;font-size:0.72rem;color:rgba(255,255,255,0.25)}
+.footer-desc{font-size:0.8rem;color:rgba(255,255,255,0.4);line-height:1.7;margin-bottom:1.8rem}
+.footer-accordion{border-top:1px solid rgba(255,255,255,0.08)}
+.footer-acc-item{border-bottom:1px solid rgba(255,255,255,0.08)}
+.footer-acc-btn{width:100%;padding:1rem 0;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:500;-webkit-tap-highlight-color:transparent}
+.footer-acc-btn::after{content:'+';font-size:1.1rem;color:rgba(255,255,255,0.3);transition:transform 0.25s}
+.footer-acc-btn.open::after{transform:rotate(45deg)}
+.footer-acc-content{max-height:0;overflow:hidden;transition:max-height 0.3s ease}
+.footer-acc-content.open{max-height:200px}
+.footer-acc-content ul{list-style:none;padding-bottom:1rem}
+.footer-acc-content li{margin-bottom:0.5rem}
+.footer-acc-content a{font-size:0.82rem;color:rgba(255,255,255,0.45)}
+.footer-contact{margin:1.5rem 0}
+.footer-contact a{display:flex;align-items:center;gap:0.6rem;padding:0.8rem 0;font-size:0.82rem;color:rgba(255,255,255,0.45);border-bottom:1px solid rgba(255,255,255,0.06)}
+.footer-contact a:last-child{border-bottom:none}
+.footer-contact svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:1.5;flex-shrink:0}
+.footer-desktop-cols{display:none;gap:3rem}
+.footer-desktop-col h4{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;font-weight:500}
+.footer-desktop-col ul{list-style:none}
+.footer-desktop-col li{margin-bottom:0.6rem}
+.footer-desktop-col a{font-size:0.82rem;color:rgba(255,255,255,0.4);transition:color 0.2s}
+.footer-desktop-col a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:1.2rem;margin-top:1rem;font-size:0.65rem;color:rgba(255,255,255,0.2);line-height:1.8;text-align:center}
 
-/* ANIMATIONS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-.hero-tag{animation:fadeUp 0.6s ease both}
-.hero-title{animation:fadeUp 0.7s 0.1s ease both}
-.hero-sub{animation:fadeUp 0.7s 0.2s ease both}
-.hero-ctas{animation:fadeUp 0.7s 0.3s ease both}
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--white);border-top:1px solid var(--border);display:flex;padding-bottom:env(safe-area-inset-bottom)}
+.bottom-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0.6rem 0.4rem;background:none;border:none;cursor:pointer;color:var(--text-muted);font-family:'Jost',sans-serif;font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;gap:0.3rem;text-decoration:none;-webkit-tap-highlight-color:transparent;transition:color 0.2s}
+.bottom-nav-item.active{color:var(--gold)}
+.bottom-nav-item:active{color:var(--gold)}
+.bottom-nav-item svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.bottom-nav-item.cart-nav{position:relative}
+.bottom-nav-item .badge{position:absolute;top:4px;right:calc(50% - 20px);background:var(--gold);color:white;border-radius:50%;width:14px;height:14px;font-size:0.55rem;font-weight:600;display:flex;align-items:center;justify-content:center}
+
+/* ============= DESKTOP ============= */
+@media(min-width:768px){
+  body{padding-bottom:0}
+  .bottom-nav{display:none}
+  .topnav{padding:0 3rem;height:64px}
+  .hamburger{display:none}
+  .nav-desktop-links{display:flex}
+  .hero{height:100vh;margin-top:64px}
+  .hero-title{font-size:4.5rem}
+  .hero-content{padding:3rem 4rem 4rem}
+  .hero-sub{max-width:460px;font-size:1rem}
+  .stats-strip{grid-template-columns:repeat(4,1fr)}
+  .stat-item{border-bottom:none}
+  .stat-item:nth-child(2n){border-right:1px solid rgba(255,255,255,0.08)}
+  .stat-item:last-child{border-right:none}
+  .section-pad{padding:5rem 4rem}
+  .section-title{font-size:2.8rem}
+  .products-section{padding:5rem 0}
+  .products-header{padding:0 4rem;margin-bottom:2.5rem}
+  .products-scroll{padding:0.5rem 4rem 1.5rem;gap:2rem}
+  .product-card{flex:0 0 300px}
+  .about-strip{display:grid;grid-template-columns:1fr 1fr}
+  .about-img{aspect-ratio:auto;height:100%;min-height:450px}
+  .about-text{padding:5rem 4rem}
+  .benefits-section .section-pad{padding:5rem 4rem}
+  .benefits-grid{grid-template-columns:repeat(4,1fr);gap:2rem}
+  .benefit-item{border:none;background:transparent;padding:1rem 0.5rem}
+  .testimonials-section{padding:5rem 0}
+  .test-header{padding:0 4rem}
+  .test-scroll{padding:0.3rem 4rem 1.5rem;gap:2rem}
+  .test-card{flex:0 0 380px}
+  .cta-section{padding:5rem 4rem}
+  .cta-form{flex-direction:row;max-width:480px;margin:0 auto}
+  .cta-form input{flex:1}
+  .cta-form button{width:auto}
+  footer{padding:4rem 4rem 2rem}
+  .footer-inner{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+  .footer-accordion{display:none}
+  .footer-desktop-cols{display:flex}
+  .footer-contact{display:none}
+  .footer-bottom{text-align:left;display:flex;justify-content:space-between}
+}
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="nav-logo">Maison <em>Dorée</em></a>
-  <ul class="nav-links">
+<header class="topnav">
+  <a href="index.html" class="nav-logo">Maison <em>Doree</em></a>
+  <ul class="nav-desktop-links">
     <li><a href="boutique.html">Boutique</a></li>
     <li><a href="#notre-histoire">Notre Histoire</a></li>
     <li><a href="#avis">Avis</a></li>
     <li><a href="contact.html">Contact</a></li>
+    <li><a href="compte.html" class="btn-account">Mon Compte</a></li>
   </ul>
-  <div class="nav-cart">
-    <button class="cart-icon" id="cartBtn" aria-label="Panier">Panier <span class="cart-count" id="cartCount">0</span></button>
-    <a href="compte.html" class="btn-nav">Mon Compte</a>
+  <div class="nav-actions">
+    <a href="panier.html" class="nav-icon-btn" aria-label="Panier">
+      <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-badge" id="cartBadge">0</span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="drawer" id="drawer" aria-hidden="true">
+  <ul class="drawer-links">
+    <li><a href="boutique.html">Boutique</a></li>
+    <li><a href="#notre-histoire" onclick="closeDrawer()">Notre Histoire</a></li>
+    <li><a href="#avis" onclick="closeDrawer()">Avis clients</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="drawer-cta">
+    <a href="compte.html" class="btn-outline">Mon Compte</a>
+    <a href="boutique.html" class="btn-filled">Commander</a>
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-left">
-    <div class="hero-tag">Pâtisserie Artisanale · Suisse</div>
+  <img class="hero-img" src="fraisier.jpg" alt="Fraisier de Printemps - Maison Doree" loading="eager">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Patisserie Artisanale - Suisse</div>
     <h1 class="hero-title">L'art de la<br><em>douceur</em><br>fait maison</h1>
-    <p class="hero-sub">Chaque gâteau est une promesse — créée avec des ingrédients sélectionnés, façonnée à la main, livrée avec amour directement chez vous.</p>
+    <p class="hero-sub">Ingredients locaux, fagonnes a la main, livres dans toute la Suisse.</p>
     <div class="hero-ctas">
-      <a href="boutique.html" class="btn-primary">Découvrir la boutique</a>
-      <a href="#notre-histoire" class="btn-ghost">Notre histoire</a>
-    </div>
-  </div>
-  <div class="hero-right">
-    <img class="hero-img" src="fraisier.jpg" alt="Fraisier de Printemps — Maison Dorée">
-    <div class="hero-badge">
-      <span>100%</span>
-      <span>Artisanal</span>
+      <a href="boutique.html" class="btn-primary">Commander</a>
+      <a href="#notre-histoire" class="btn-secondary">Notre histoire</a>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
-<div class="stats-bar">
+<div class="stats-strip">
   <div class="stat-item"><span class="stat-number">+500</span><span class="stat-label">Clients satisfaits</span></div>
-  <div class="stat-item"><span class="stat-number">24</span><span class="stat-label">Créations uniques</span></div>
-  <div class="stat-item"><span class="stat-number">100%</span><span class="stat-label">Ingrédients naturels</span></div>
+  <div class="stat-item"><span class="stat-number">24</span><span class="stat-label">Creations</span></div>
+  <div class="stat-item"><span class="stat-number">100%</span><span class="stat-label">Naturel</span></div>
   <div class="stat-item"><span class="stat-number">4.9 ★</span><span class="stat-label">Note moyenne</span></div>
 </div>
 
-<!-- PRODUCTS -->
-<section class="products-section" id="boutique">
+<section class="products-section">
   <div class="products-header">
     <div>
-      <div class="section-tag">Nos créations</div>
+      <div class="section-tag">Nos creations</div>
       <h2 class="section-title">Best-sellers <em>du moment</em></h2>
     </div>
-    <a href="boutique.html" class="btn-ghost">Voir toute la boutique</a>
+    <a href="boutique.html" class="link-all">Tout voir</a>
   </div>
-  <div class="products-grid">
-
+  <div class="products-scroll" id="productsScroll">
     <div class="product-card">
       <div class="product-img">
         <div class="product-badge badge-top">Bestseller</div>
         <img src="fraisier.jpg" alt="Fraisier de Printemps">
       </div>
-      <h3 class="product-name">Fraisier de Printemps</h3>
-      <p class="product-desc">Génoise légère, crème mousseline vanille, fraises fraîches du Valais</p>
-      <div class="allergen-tags">
-        <span class="allergen-tag">Gluten</span>
-        <span class="allergen-tag">Lait</span>
-        <span class="allergen-tag">Oeufs</span>
-      </div>
-      <div class="product-footer" style="margin-top:0.8rem">
-        <div class="product-price">CHF 52 <small>/ 6 pers.</small></div>
-        <button class="btn-add" onclick="addToCart(this)">+</button>
+      <div class="product-info">
+        <h3 class="product-name">Fraisier de Printemps</h3>
+        <p class="product-desc">Genoise legere, creme mousseline vanille, fraises fraiches du Valais</p>
+        <div class="allergen-tags"><span class="allergen-tag">Gluten</span><span class="allergen-tag">Lait</span><span class="allergen-tag">Oeufs</span></div>
+        <div class="product-footer">
+          <div class="product-price">CHF 52 <small>/ 6 pers.</small></div>
+          <button class="btn-add" onclick="addToCart(this)" aria-label="Ajouter au panier">+</button>
+        </div>
       </div>
     </div>
-
     <div class="product-card">
       <div class="product-img" style="background:#2C1F15">
         <div class="product-badge badge-new">Nouveau</div>
-        <div class="product-img-placeholder" style="color:rgba(200,169,110,0.5)">Photo à venir<br>Forêt-Noire</div>
+        <div class="product-img-placeholder" style="color:rgba(200,169,110,0.4)">Photo a venir</div>
       </div>
-      <h3 class="product-name">Forêt-Noire Intense</h3>
-      <p class="product-desc">Biscuit chocolat noir 72%, cerises amarena, chantilly légère au Kirsch</p>
-      <div class="allergen-tags">
-        <span class="allergen-tag">Gluten</span>
-        <span class="allergen-tag">Lait</span>
-        <span class="allergen-tag">Alcool</span>
-      </div>
-      <div class="product-footer" style="margin-top:0.8rem">
-        <div class="product-price">CHF 58 <small>/ 6 pers.</small></div>
-        <button class="btn-add" onclick="addToCart(this)">+</button>
+      <div class="product-info">
+        <h3 class="product-name">Foret-Noire Intense</h3>
+        <p class="product-desc">Biscuit chocolat 72%, cerises amarena, chantilly legere au Kirsch</p>
+        <div class="allergen-tags"><span class="allergen-tag">Gluten</span><span class="allergen-tag">Lait</span><span class="allergen-tag">Alcool</span></div>
+        <div class="product-footer">
+          <div class="product-price">CHF 58 <small>/ 6 pers.</small></div>
+          <button class="btn-add" onclick="addToCart(this)" aria-label="Ajouter au panier">+</button>
+        </div>
       </div>
     </div>
-
     <div class="product-card">
       <div class="product-img" style="background:#FFFBEA">
-        <div class="product-img-placeholder">Photo à venir<br>Tarte Citron</div>
+        <div class="product-img-placeholder">Photo a venir</div>
       </div>
-      <h3 class="product-name">Tarte Citron Meringuée</h3>
-      <p class="product-desc">Pâte sablée croustillante, lemon curd maison, meringue italienne dorée</p>
-      <div class="allergen-tags">
-        <span class="allergen-tag">Gluten</span>
-        <span class="allergen-tag">Oeufs</span>
-        <span class="allergen-tag">Lait</span>
-      </div>
-      <div class="product-footer" style="margin-top:0.8rem">
-        <div class="product-price">CHF 44 <small>/ 6 pers.</small></div>
-        <button class="btn-add" onclick="addToCart(this)">+</button>
+      <div class="product-info">
+        <h3 class="product-name">Tarte Citron Meringuee</h3>
+        <p class="product-desc">Pate sablee croustillante, lemon curd maison, meringue italienne</p>
+        <div class="allergen-tags"><span class="allergen-tag">Gluten</span><span class="allergen-tag">Oeufs</span><span class="allergen-tag">Lait</span></div>
+        <div class="product-footer">
+          <div class="product-price">CHF 44 <small>/ 6 pers.</small></div>
+          <button class="btn-add" onclick="addToCart(this)" aria-label="Ajouter au panier">+</button>
+        </div>
       </div>
     </div>
-
+  </div>
+  <div class="scroll-dots" id="scrollDots">
+    <div class="scroll-dot active"></div>
+    <div class="scroll-dot"></div>
+    <div class="scroll-dot"></div>
   </div>
 </section>
 
-<!-- ABOUT -->
 <div class="about-strip" id="notre-histoire">
-  <div class="about-img-side">
-    <img src="fraisier.jpg" alt="Notre atelier de pâtisserie">
-  </div>
-  <div class="about-text-side">
+  <div class="about-img"><img src="fraisier.jpg" alt="Notre atelier"></div>
+  <div class="about-text">
     <div class="section-tag">Notre histoire</div>
-    <h2 class="section-title">Une passion transmise,<br><em>un savoir-faire précieux</em></h2>
-    <p>Née d'une passion familiale pour la pâtisserie, Maison Dorée a vu le jour dans une cuisine lausannoise avec une seule conviction : chaque gâteau mérite d'être une œuvre. Nous travaillons exclusivement avec des producteurs locaux, des ingrédients de saison, et un soin artisanal qui se goûte à la première bouchée.</p>
-    <a href="contact.html" class="btn-primary" style="width:fit-content">En savoir plus</a>
+    <h2 class="section-title">Une passion transmise,<br><em>un savoir-faire precieux</em></h2>
+    <p>Nee d'une passion familiale pour la patisserie, Maison Doree a vu le jour dans une cuisine lausannoise avec une seule conviction : chaque gateau merite d'etre une oeuvre. Nous travaillons exclusivement avec des producteurs locaux, des ingredients de saison, et un soin artisanal qui se goute a la premiere bouchee.</p>
+    <a href="contact.html" class="btn-text-link">En savoir plus</a>
   </div>
 </div>
 
-<!-- BENEFITS -->
-<section class="benefits-section">
-  <div style="text-align:center;margin-bottom:1rem">
-    <div class="section-tag" style="justify-content:center"><span style="display:inline-block;width:30px;height:1px;background:var(--gold)"></span>Pourquoi nous choisir</div>
-    <h2 class="section-title">Les bienfaits de<br><em>l'artisanal</em></h2>
-  </div>
+<section class="benefits-section section-pad">
+  <div class="section-tag">Pourquoi nous choisir</div>
+  <h2 class="section-title">Les bienfaits de<br><em>l'artisanal</em></h2>
   <div class="benefits-grid">
     <div class="benefit-item">
-      <div class="benefit-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 22c4.97 0 9-4.03 9-9-4.97 0-9 4.03-9 9z"/><path d="M12 22c0-4.97-4.03-9-9-9 0 4.97 4.03 9 9 9z"/><path d="M12 2a9.96 9.96 0 0 0 2.5 6.5A9.96 9.96 0 0 0 21 11"/><path d="M12 2a9.96 9.96 0 0 1-2.5 6.5A9.96 9.96 0 0 1 3 11"/></svg>
-      </div>
-      <h3 class="benefit-title">Ingrédients naturels</h3>
-      <p class="benefit-text">Aucun additif, aucun conservateur. Uniquement du beurre, des oeufs frais et des fruits de saison.</p>
+      <div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M12 22c4.97 0 9-4.03 9-9-4.97 0-9 4.03-9 9z"/><path d="M12 22c0-4.97-4.03-9-9-9 0 4.97 4.03 9 9 9z"/></svg></div>
+      <h3 class="benefit-title">Ingredients naturels</h3>
+      <p class="benefit-text">Aucun additif. Beurre, oeufs frais et fruits de saison.</p>
     </div>
     <div class="benefit-item">
-      <div class="benefit-icon">
-        <svg viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
-      </div>
-      <h3 class="benefit-title">Fait à la main</h3>
-      <p class="benefit-text">Chaque gâteau est façonné individuellement dans notre atelier. Aucune production industrielle.</p>
-    </div>
-    <div class="benefit-icon-wrap benefit-item">
-      <div class="benefit-icon">
-        <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-      </div>
-      <h3 class="benefit-title">Allergènes listés</h3>
-      <p class="benefit-text">Toutes les fiches produits mentionnent clairement les allergènes pour votre sécurité et celle de vos proches.</p>
+      <div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg></div>
+      <h3 class="benefit-title">Fait a la main</h3>
+      <p class="benefit-text">Faconne individuellement dans notre atelier lausannois.</p>
     </div>
     <div class="benefit-item">
-      <div class="benefit-icon">
-        <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-      </div>
-      <h3 class="benefit-title">Livraison soignée</h3>
-      <p class="benefit-text">Emballage isotherme, livraison en 24h dans toute la Suisse romande pour une fraîcheur garantie.</p>
+      <div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+      <h3 class="benefit-title">Allergenes listes</h3>
+      <p class="benefit-text">Tous les allergenes sont clairement indiques sur chaque fiche.</p>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+      <h3 class="benefit-title">Livraison soignee</h3>
+      <p class="benefit-text">Emballage isotherme, livraison 24h en Suisse romande.</p>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
 <section class="testimonials-section" id="avis">
   <div class="test-header">
-    <div>
-      <div class="section-tag" style="color:rgba(200,169,110,0.6)">Avis vérifiés</div>
-      <h2 class="section-title" style="color:var(--gold)">Ce qu'ils <em>disent</em></h2>
-    </div>
-    <a href="boutique.html" class="btn-nav" style="border-color:rgba(200,169,110,0.5);color:var(--gold)">Voir tous les avis</a>
+    <div class="section-tag" style="color:rgba(200,169,110,0.6)">Avis verifies</div>
+    <h2 class="section-title" style="color:var(--gold)">Ce qu'ils <em>disent</em></h2>
   </div>
-  <div class="test-grid">
+  <div class="test-scroll">
     <div class="test-card">
       <div class="stars">★★★★★</div>
-      <p class="test-text">"Le fraisier était absolument divin. Mes invités en ont encore parlé une semaine après. Je recommande les yeux fermés !"</p>
+      <p class="test-text">"Le fraisier etait absolument divin. Mes invites en ont encore parle une semaine apres. Je recommande les yeux fermes !"</p>
       <div class="test-author">Sophie M.</div>
-      <div class="test-location">Lausanne · Commande du 12.03.2025</div>
+      <div class="test-location">Lausanne · 12.03.2025</div>
     </div>
     <div class="test-card">
       <div class="stars">★★★★★</div>
-      <p class="test-text">"Service impeccable, livraison à l'heure, et le gâteau était encore meilleur que sur les photos. Bravo pour le soin du détail !"</p>
+      <p class="test-text">"Service impeccable, livraison a l'heure, et le gateau etait encore meilleur que sur les photos. Bravo !"</p>
       <div class="test-author">Marc &amp; Isabelle T.</div>
-      <div class="test-location">Genève · Commande du 28.02.2025</div>
+      <div class="test-location">Geneve · 28.02.2025</div>
     </div>
     <div class="test-card">
       <div class="stars">★★★★☆</div>
-      <p class="test-text">"La forêt noire était à tomber. Je reviendrai certainement pour l'anniversaire de mon mari. Merci pour cette douceur !"</p>
+      <p class="test-text">"La foret noire etait a tomber. Je reviendrai pour l'anniversaire de mon mari. Merci pour cette douceur !"</p>
       <div class="test-author">Nadia K.</div>
-      <div class="test-location">Fribourg · Commande du 10.04.2025</div>
+      <div class="test-location">Fribourg · 10.04.2025</div>
     </div>
   </div>
 </section>
 
-<!-- NEWSLETTER -->
 <section class="cta-section">
-  <div class="section-tag" style="justify-content:center;color:rgba(255,255,255,0.8)">Restez informé·e</div>
-  <h2 class="section-title">Recevez nos <em style="color:white;font-style:italic">nouveautés</em></h2>
-  <p>Promotions exclusives, nouvelles créations, conseils de conservation — directement dans votre boîte mail.</p>
+  <div class="section-tag" style="justify-content:center;color:rgba(255,255,255,0.8)">Restez informe·e</div>
+  <h2 class="section-title">Recevez nos <em style="color:white;font-style:italic">nouveautes</em></h2>
+  <p>Promotions, nouvelles creations et conseils de conservation.</p>
   <div class="cta-form">
-    <input type="email" placeholder="votre@email.ch">
-    <button type="button">S'inscrire</button>
+    <input type="email" placeholder="votre@email.ch" inputmode="email" autocomplete="email">
+    <button type="button" onclick="subscribeNewsletter(this)">S'inscrire</button>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer id="contact-footer">
-  <div class="footer-grid">
+<footer>
+  <div class="footer-inner">
     <div>
-      <div class="footer-brand">Maison <em>Dorée</em></div>
-      <p class="footer-desc">Pâtisserie artisanale lausannoise. Créations sur mesure, ingrédients locaux, livraison en Suisse.</p>
+      <div class="footer-brand">Maison <em>Doree</em></div>
+      <p class="footer-desc">Patisserie artisanale lausannoise. Creations sur mesure, ingredients locaux, livraison en Suisse.</p>
     </div>
-    <div class="footer-col">
-      <h4>Boutique</h4>
-      <ul>
-        <li><a href="boutique.html">Gâteaux classiques</a></li>
-        <li><a href="boutique.html">Tartes &amp; tartelettes</a></li>
-        <li><a href="boutique.html">Entremets</a></li>
-        <li><a href="contact.html">Commandes spéciales</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Informations</h4>
-      <ul>
-        <li><a href="#notre-histoire">Notre histoire</a></li>
-        <li><a href="contact.html">Livraison &amp; délais</a></li>
-        <li><a href="contact.html">Politique de retour</a></li>
-        <li><a href="contact.html">CGV</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="mailto:bonjour@maisondoree.ch">bonjour@maisondoree.ch</a></li>
-        <li>Lausanne, Vaud, Suisse</li>
-        <li>Lun–Sam : 8h–18h</li>
-        <li><a href="contact.html">Nous contacter</a></li>
-      </ul>
+    <div class="footer-desktop-cols">
+      <div class="footer-desktop-col"><h4>Boutique</h4><ul><li><a href="boutique.html">Gateaux classiques</a></li><li><a href="boutique.html">Tartes</a></li><li><a href="boutique.html">Entremets</a></li><li><a href="contact.html">Sur mesure</a></li></ul></div>
+      <div class="footer-desktop-col"><h4>Informations</h4><ul><li><a href="#notre-histoire">Notre histoire</a></li><li><a href="contact.html">Livraison</a></li><li><a href="contact.html">CGV</a></li><li><a href="contact.html">Mentions legales</a></li></ul></div>
+      <div class="footer-desktop-col"><h4>Contact</h4><ul><li><a href="mailto:bonjour@maisondoree.ch">bonjour@maisondoree.ch</a></li><li>+41 79 123 45 67</li><li>Lausanne, Vaud</li><li>Lun-Sam : 8h-18h</li></ul></div>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2025 Maison Dorée · Tous droits réservés</span>
-    <span>Mentions légales · Confidentialité · CGV · Allergènes</span>
+  <div class="footer-accordion">
+    <div class="footer-acc-item"><button class="footer-acc-btn" onclick="toggleAcc(this)">Boutique</button><div class="footer-acc-content"><ul><li><a href="boutique.html">Gateaux classiques</a></li><li><a href="boutique.html">Tartes</a></li><li><a href="contact.html">Sur mesure</a></li></ul></div></div>
+    <div class="footer-acc-item"><button class="footer-acc-btn" onclick="toggleAcc(this)">Informations</button><div class="footer-acc-content"><ul><li><a href="contact.html">Livraison</a></li><li><a href="contact.html">CGV</a></li><li><a href="contact.html">Mentions legales</a></li></ul></div></div>
   </div>
+  <div class="footer-contact">
+    <a href="mailto:bonjour@maisondoree.ch"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>bonjour@maisondoree.ch</a>
+    <a href="tel:+41791234567"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.5 16l.42.92z"/></svg>+41 79 123 45 67</a>
+    <a href="contact.html"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Lausanne, Vaud — Lun-Sam 8h-18h</a>
+  </div>
+  <div class="footer-bottom"><span>© 2025 Maison Doree · Tous droits reserves</span><span>Confidentialite · CGV · Allergenes</span></div>
 </footer>
 
+<nav class="bottom-nav" aria-label="Navigation principale">
+  <a href="index.html" class="bottom-nav-item active">
+    <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Accueil
+  </a>
+  <a href="boutique.html" class="bottom-nav-item">
+    <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>Boutique
+  </a>
+  <a href="contact.html" class="bottom-nav-item">
+    <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Contact
+  </a>
+  <a href="panier.html" class="bottom-nav-item cart-nav">
+    <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    <span class="badge" id="cartBadge2">0</span>Panier
+  </a>
+  <a href="compte.html" class="bottom-nav-item">
+    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Compte
+  </a>
+</nav>
+
 <script>
-let cartCount = 0;
-function addToCart(btn) {
-  cartCount++;
-  document.getElementById('cartCount').textContent = cartCount;
-  const orig = btn.textContent;
-  btn.style.background = 'var(--gold)';
-  btn.style.color = 'white';
-  btn.textContent = '✓';
-  setTimeout(() => {
-    btn.style.background = 'transparent';
-    btn.style.color = 'var(--gold)';
-    btn.textContent = orig;
-  }, 1400);
-}
-window.addEventListener('scroll', () => {
-  document.querySelector('nav').style.boxShadow =
-    window.scrollY > 60 ? '0 2px 20px rgba(61,43,31,0.08)' : 'none';
-});
+const hamburger=document.getElementById('hamburger');
+const drawer=document.getElementById('drawer');
+let open=false;
+function closeDrawer(){open=false;hamburger.classList.remove('open');drawer.classList.remove('open');hamburger.setAttribute('aria-expanded','false');drawer.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+hamburger.addEventListener('click',()=>{open=!open;hamburger.classList.toggle('open',open);drawer.classList.toggle('open',open);hamburger.setAttribute('aria-expanded',open);drawer.setAttribute('aria-hidden',!open);document.body.style.overflow=open?'hidden':'';});
+document.addEventListener('click',(e)=>{if(open&&!drawer.contains(e.target)&&!hamburger.contains(e.target))closeDrawer();});
+let cartCount=0;
+function updateCart(){document.getElementById('cartBadge').textContent=cartCount;document.getElementById('cartBadge2').textContent=cartCount;}
+function addToCart(btn){cartCount++;updateCart();const o=btn.textContent;btn.style.background='var(--gold)';btn.style.color='white';btn.textContent='✓';setTimeout(()=>{btn.style.background='transparent';btn.style.color='var(--gold)';btn.textContent=o;},1400);}
+const scroll=document.getElementById('productsScroll');
+const dots=document.querySelectorAll('.scroll-dot');
+if(scroll&&dots.length){scroll.addEventListener('scroll',()=>{const a=Math.min(Math.round(scroll.scrollLeft/(scroll.scrollWidth/dots.length)),dots.length-1);dots.forEach((d,i)=>d.classList.toggle('active',i===a));},{passive:true});}
+function toggleAcc(btn){const c=btn.nextElementSibling;const was=btn.classList.contains('open');document.querySelectorAll('.footer-acc-btn').forEach(b=>{b.classList.remove('open');b.nextElementSibling.classList.remove('open');});if(!was){btn.classList.add('open');c.classList.add('open');}}
+function subscribeNewsletter(btn){const input=btn.previousElementSibling;if(!input.value||!input.value.includes('@')){input.style.outline='2px solid #c44';return;}btn.textContent='Merci !';btn.style.background='#4A8A5A';input.value='';setTimeout(()=>{btn.textContent="S'inscrire";btn.style.background='var(--brown)';},3000);}
+window.addEventListener('scroll',()=>{document.querySelector('.topnav').style.boxShadow=window.scrollY>10?'0 2px 16px rgba(61,43,31,0.1)':'none';},{passive:true});
 </script>
 </body>
 </html>
